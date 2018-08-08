@@ -8,19 +8,20 @@ ACCOUNT MANAGER  - REST API
 ## Description
 
 Microservice for manage the accounts of our clients.
-Currently we only have 2 types of accounts, savings and checkin. Each one has its allowed transactions, and i have supposed that this operations
+Currently we only have 2 types of accounts, savings and checkin. Each one has its allowed transactions, and it is supposed that this operations
 can be changed along the time; so for that reason, this operations can be set in the properties file.
 
 The allowed Transactions are the following:
  - DEPOSIT
-  
- - WITHDRAWAL
+ - WITHDRAWAL:
+  * All accounts could have a limit. If this limit does not need to be taken into account , the account is saved with this field to 
+  null
  - PAY INTEREST
  - CASH TRANSFERS
-    * For concurrent inserts, all the shops must be inserted/modified.
- - Modify an existing Shop: when a user POST an existing shop, the shop is updated. The old version of the shop is returned.
- - Get all Shops
- - Given latitude and longitude information in the url by a client , locate the shop closest to him and returning the address info of the shop.
+  * If the id of the destiny account is equal to the source account, the transaction can not be executed.
+  * For the concurrency problems that could happen, the rule that the microservice follows is the Optimistic Lock, that is, if after
+    the transaction, there is a collision with the account versions, meaning that the data is inconsistent (another transaction has         modified it), the whole transaction is rolled-back, so the user can choose what he want to do, because there is a problem of       
+    inconsistency in the data of the current account.
 
 ## Requirements
 
@@ -33,7 +34,7 @@ The allowed Transactions are the following:
 #### Running the Service
 
 ```sh
-./gradlew bootRun # use 'gradlew.bat bootRun' on Windows
+./gradlew bootRun local # use 'gradle bootRun local' on Windows
 ```
 
 #### Distributing the Service
@@ -41,7 +42,7 @@ The allowed Transactions are the following:
 ```sh
 ./gradlew build # use 'gradlew.bat build' on Windows
 ```
-generates the binary `./build/libs/shopretailer-rest-service-2.1.0.jar`
+generates the binary `./build/libs/poc-accounts-microservice-0.0.1-SNAPSHOT`
 
 #### Testing the Service
 
