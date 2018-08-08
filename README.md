@@ -25,6 +25,7 @@ The allowed Transactions are the following:
 
  - Java 1.8
  - Lombok
+ - Swagger
  - Gradle
  
 ## Usage 
@@ -51,3 +52,32 @@ Some Java unit-tests and integration tests are included. To execute them, run:
 ```
 #### CI
 The project has been configured to perform Continuous Integration using Travis CI. In the top of this document the status of the build can be checked, also it has the direct link to the travis build page.
+
+#### TESTING
+To test/try the service a postman collection has been committed with the source. It can be imported in postman.
+Also once the service is running, a swagger-ui is also available at this url:
+https://localhost:10101/swagger-ui.html
+
+#### DEVELOPMENT COMMENTS
+Depending on the performance , if this one is bad due to the number of concurrent requests, can try 2 different approachs:
+
+1 - increase the number of allowed threads in the tomcat threadpool ( one thread is used for each request).
+2 - re-implement the service and do it some factoring:
+	- we can try to identify the methods that consume most of the time and make their calls in an async way.
+	- we can re-design the whole service and make it non-blocking rest service, each call in the controller can be done in an async way,
+	using callbacks and deferred results.
+	
+In order to improve the responsiveness of our services , an extra layer can be introduced, the cache , managed by Hazelcast or similar
+products. So the data, once loaded from our database,  would be in a in memory-grid, much faster. Also the second layer of JPA cache
+can be managed by Hazelcast.
+
+For the JPA lockin strategy I´ve choosen OPTIMISTIC LOCK, because the locking mechanism is a way to ensure that all changes are taken into consideration when changing a record in the database.
+So, if it  fails the same person who run the request, should review the new version of the record and make a decision.
+
+#### NICE TO HAVE
+Nice to have but not specified in the challenge:
+ - aunthentication with jwt token for example
+ - delete / create / update accounts
+ - New resource named Transaction, to track history of performed operations :delete / list all transaction, and transactions by transactionId, to complete the API for Transaction resource
+ - improvements in the testing.
+ 
