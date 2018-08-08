@@ -75,10 +75,13 @@ can be managed by Hazelcast.
 
 For the JPA lockin strategy I´ve choosen OPTIMISTIC LOCK, because the locking mechanism is a way to ensure that all changes are taken into consideration when changing a record in the database.
 So, if it  fails the same person who run the request, should review the new version of the record and make a decision.
+This approach could be enhance by controlling also the ETag , so unnecessary exceptions caused by the optimistic lock can be avoided. 
+The version is checked in the Etag, so you can avoid to begin the transaction.
 
 #### NICE TO HAVE
 Nice to have but not specified in the challenge:
  - aunthentication with jwt token for example
+ - Etag checking to enhance the optimistic lock approach
  - delete / create / update accounts
  - New resource named Transaction, to track history of performed operations :delete / list all transaction, and transactions by transactionId, to complete the API for Transaction resource
  - improvements in the testing.
