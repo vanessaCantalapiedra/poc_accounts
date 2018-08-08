@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vanessaCantalapiedra/shopretailer_v2.0.svg?branch=master)](https://travis-ci.org/vanessaCantalapiedra/shopretailer_v2.0)
+[![Build Status](https://travis-ci.org/vanessaCantalapiedra/poc_accounts.svg?branch=master)](https://travis-ci.org/vanessaCantalapiedra/poc_accounts)
 
 ACCOUNT MANAGER  - REST API 
 ====================================
