@@ -1,5 +1,3 @@
-# poc_accounts
-
 [![Build Status](https://travis-ci.org/vanessaCantalapiedra/shopretailer_v2.0.svg?branch=master)](https://travis-ci.org/vanessaCantalapiedra/shopretailer_v2.0)
 
 ACCOUNT MANAGER  - REST API 
@@ -14,12 +12,12 @@ can be changed along the time; so for that reason, this operations can be set in
 The allowed Transactions are the following:
  - DEPOSIT
  - WITHDRAWAL:
-  * All accounts could have a limit. If this limit does not need to be taken into account , the account is saved with this field to 
+   - All accounts could have a limit. If this limit does not need to be taken into account , the account is saved with this field to 
   null
  - PAY INTEREST
  - CASH TRANSFERS
-  * If the id of the destiny account is equal to the source account, the transaction can not be executed.
-  * For the concurrency problems that could happen, the rule that the microservice follows is the Optimistic Lock, that is, if after
+   - If the id of the destiny account is equal to the source account, the transaction can not be executed.
+   - For the concurrency problems that could happen, the rule that the microservice follows is the Optimistic Lock, that is, if after
     the transaction, there is a collision with the account versions, meaning that the data is inconsistent (another transaction has         modified it), the whole transaction is rolled-back, so the user can choose what he want to do, because there is a problem of       
     inconsistency in the data of the current account.
 
