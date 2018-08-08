@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "c9455a5a-9a72-4013-9610-7c79948227b3",
+		"name": "myApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "5c74c313-e81a-451d-a4de-7feb0d60f661",
+			"name": "Retrieve all Accounts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6InVzZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.khRbDuF1o5ZBSuM94UqI7sS-r6knwoHUDrI6-whE76E",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "8888ab48-13cc-45d2-bc35-39438c13b358",
+			"name": "Retrieve savings accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts?type=savings",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "savings"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "6fa4503a-affa-409c-ba15-e0d3a4a2ae04",
+			"name": "Retrieve account by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10001",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0aa6d4b8-a95b-445c-97d3-c8579b93ba14",
+			"name": "Deposit Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 9\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10003?transaction=DEPOSIT",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10003"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "DEPOSIT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d0c22835-4239-495d-9b49-da78cb46891b",
+			"name": "Pay Interest Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10001?transaction=PAY_INTEREST",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10001"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "PAY_INTEREST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "75ffe546-0c67-4e09-9889-6736816de320",
+			"name": "Pay Interest Transaction - Tx not supported",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10002?transaction=PAY_INTEREST",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10002"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "PAY_INTEREST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "36fbffd8-e8ec-47ce-8686-5a0d3ec701b0",
+			"name": "Cash Transfer Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10,\n\t\"accountDst\":10003\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10002?transaction=CASH_TRANSFER",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10002"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "CASH_TRANSFER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "99a75732-a8da-4f30-a34e-62e0d35e4fe5",
+			"name": "Cash Transfer Transaction- Error equal id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10,\n\t\"accountDst\":10002\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10002?transaction=CASH_TRANSFER",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10002"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "CASH_TRANSFER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "52480365-452f-4234-a91e-182b33a5f292",
+			"name": "Cash Transfer Transaction - Not allowed",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10,\n\t\"accountDst\":10001\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10002?transaction=CASH_TRANSFER",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10002"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "CASH_TRANSFER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "75ce1cba-c800-4ed0-a64a-016dbbae9ad3",
+			"name": "Withdrawal Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10\n\t\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10003?transaction=WITHDRAWAL",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10003"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "WITHDRAWAL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "680645e8-79ff-4d59-b8c9-ca71062cc66e",
+			"name": "Withdrawal Transaction - limit exceeds",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 10000000\n}"
+				},
+				"url": {
+					"raw": "{{myApp.url}}/v1/accounts/10002?transaction=WITHDRAWAL",
+					"host": [
+						"{{myApp.url}}"
+					],
+					"path": [
+						"v1",
+						"accounts",
+						"10002"
+					],
+					"query": [
+						{
+							"key": "transaction",
+							"value": "WITHDRAWAL"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "c81eb237-71f4-4708-aa42-c5b119f301f6",
+			"key": "server-url",
+			"value": "https://localhost:10101",
+			"type": "string"
+		}
+	]
+}
