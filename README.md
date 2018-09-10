@@ -5,7 +5,10 @@ POC - ACCOUNT MANAGER ( REST API )
 
 ## Description
 
-POC for Microservice for manage the accounts of our clients. The purpose is to play around with JPA.
+Simple POC microservice to manage the accounts of our clients.
+The purpose is to play around with JPA.
+
+Some requirements/rules:
 Currently we only have 2 types of accounts, savings and checkin. Each one has its allowed transactions, and it is supposed that this operations
 can be changed along the time; so for that reason, this operations can be set in the properties file.
 
